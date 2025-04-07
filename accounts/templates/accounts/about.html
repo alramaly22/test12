@@ -1,0 +1,692 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--=============== FAVICON ===============-->
+    <link
+      rel="shortcut icon"
+      href="{% static 'assets/img/logo-2.svg' %}"
+      type="image/x-icon"
+    />
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'assets/css/swiper-bundle.min.css' %}"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}" />
+    <title>Omar</title>
+  </head>
+
+  <body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="{% url 'index' %}" class="nav__logo">
+          <img
+            style="width: 45%"
+            src="{% static 'assets/img/logo-2.svg' %}"
+            alt=""
+            class="logohat"
+          />
+        </a>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li><a href="#home" class="nav__link">HOME</a></li>
+            <li><a href="#about" class="nav__link">ABOUT US</a></li>
+            <li><a href="#faqs" class="nav__link">FAQS</a></li>
+            <li><a href="#testimonial" class="nav__link">TESTIMONIAL</a></li>
+            <li><a href="#footer" class="nav__link">FOOTER</a></li>
+          </ul>
+          <div class="nav__colse" id="nav-close">
+            <i class="ri-close-large-line"></i>
+          </div>
+        </div>
+        <button type="button" id="openCurrencyMenu" class="btn--rounded-gray">
+          <span class="flag-icon" id="currentFlag">
+              <img src="{% static 'assets/img/usd.webp' %}" width="20" />
+          </span>
+          <span class="mx-1.5">|</span>
+          <span id="currentCurrency">USD</span>
+      </button>
+      
+      <div class="language-currency-menu popup" id="currencyMenu">
+          <div class="menu-header">
+              <span style="color: #ff9500;">اختر اللغة والعملة</span>
+              <span class="close-btn" id="closeMenu">&times;</span>
+          </div>
+      
+          <div class="menu-options">
+              <div class="menu-item" data-lang="ar" data-currency="EGP" data-flag="eg.png">
+                  <img src="{% static 'assets/img/eg.png' %}" alt="العلم المصري" class="flag-icon">
+                  <span>العربية - الجنيه المصري (EGP)</span>
+              </div>
+              <div class="menu-item" data-lang="ar" data-currency="SAR" data-flag="saudi.webp">
+                  <img src="{% static 'assets/img/saudi.webp' %}" alt="العلم السعودي" class="flag-icon">
+                  <span>العربية - الريال السعودي (SAR)</span>
+              </div>
+              <div class="menu-item" data-lang="ar" data-currency="AED" data-flag="unitearab.webp">
+                  <img src="{% static 'assets/img/unitearab.webp' %}" alt="العلم الإماراتي" class="flag-icon">
+                  <span>العربية - الدرهم الإماراتي (AED)</span>
+              </div>
+              <div class="menu-item" data-lang="en" data-currency="USD" data-flag="usd.webp">
+                  <img src="{% static 'assets/img/usd.webp' %}" alt="العلم الأمريكي" class="flag-icon">
+                  <span>English - US Dollar (USD)</span>
+              </div>
+          </div>
+      </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-apps-2-fill"></i>
+        </div>
+      </nav>
+    </header>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+      <!--==================== HOME ====================-->
+      <section class="home section" id="home">
+        <div class="video-container">
+          <video class="home__video" autoplay muted loop>
+            <source src="{% static 'assets/img/m.mp4' %}" type="video/mp4" />
+          </video>
+          <div class="video-overlay"></div>
+        </div>
+        <div class="home__container container grid">
+          <div class="home__data">
+            <h1 class="home__title">Become Stronger Healthier</h1>
+            <p class="home__description">
+              I'm Omar El-Mahdy, an online fitness coach. With 4+ years of
+              experience, I've helped 1,000+ women transform their lives. Let's
+              achieve your goals together!
+            </p>
+            <div class="home__buttons">
+              <a href="{% url 'index' %}#menu" class="button"
+                >Start Your Transformation</a
+              >
+              <a href="{% url 'index' %}#menu" class="button button__ghost"
+                >View Programs</a
+              >
+            </div>
+          </div>
+          <div class="home__images">
+            <div class="home__circle">
+              <div class="home__subcricle"></div>
+            </div>
+            <img
+              src="{% static 'assets/img/personalfav.jpg' %}"
+              alt="Fitness Coach"
+              class="home__img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="brand section" id="brand">
+        <h2 class="section__title">Certified Expertise You Can Trust</h2>
+        <div class="brand__container container grid">
+          <img
+            src="{% static 'assets/img/cer13.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-left"
+          />
+          <img
+            src="{% static 'assets/img/cer10.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-right"
+          />
+          <img
+            src="{% static 'assets/img/cer11.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-left"
+          />
+          <img
+            src="{% static 'assets/img/cer6.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-right"
+          />
+          <img
+            src="{% static 'assets/img/cer7.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-left"
+          />
+          <img
+            src="{% static 'assets/img/cer8.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-right"
+          />
+          <img
+            src="{% static 'assets/img/cer9.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-left"
+          />
+          <img
+            src="{% static 'assets/img/cer5.jpg' %}"
+            alt=""
+            class="brand__img"
+            data-aos="fade-right"
+          />
+        </div>
+      </section>
+
+      <!--==================== ABOUT ====================-->
+      <section class="about section" id="about" data-aos="fade-left">
+        <div class="about__container container grid">
+          <div class="about__data">
+            <h2 class="section__title">Learn More About Omar</h2>
+            <p class="about__description">
+              Hi, I'm Omar El-Mahdy, an online fitness coach and nutrition
+              specialist with over 4 years of experience in transforming lives.
+              My journey began with a passion for fitness and a desire to help
+              others achieve their health and wellness goals. Over the years,
+              I've had the privilege of working with more than 1,000 women from
+              all walks of life, each with unique challenges and aspirations.
+              <br /><br />
+              I specialize in female training and nutrition, with a deep
+              understanding of women's health issues such as PCOS, thyroid
+              disorders, insulin resistance, and postpartum recovery. My
+              approach is holistic, focusing not just on physical transformation
+              but also on mental well-being and building a positive relationship
+              with food. <br /><br />
+              What sets me apart is my commitment to personalized care. I work
+              closely with a dedicated medical team, including a
+              physiotherapist, pharmacist, and medical doctor, to ensure that
+              every client receives the best possible support. Whether you're
+              dealing with a specific health condition or simply looking to
+              improve your overall fitness, I'm here to guide you every step of
+              the way. <br /><br />
+              With over 10 certifications in nutrition, training, and mental
+              health, I bring a wealth of knowledge to my coaching. My mission
+              is to empower you to become the strongest, healthiest, and most
+              confident version of yourself. Let's embark on this journey
+              together and create lasting change!
+            </p>
+          </div>
+          <div class="about__images">
+            <div class="about__shape"></div>
+            <img
+              src="{% static 'assets/img/te.jpg' %}"
+              alt="Fitness Coach"
+              class="about__coffee"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!--==================== QUESTIONS ====================-->
+      <section class="questions section" id="faqs" data-aos="fade-right">
+        <h2 class="section__title questions__title container">
+          Frequently Asked Questions About Online Coaching
+        </h2>
+
+        <div class="questions__container container grid">
+          <div class="questions__group">
+            <div class="questions__item">
+              <header class="questions__header">
+                <i class="ri-add-line questions__icon"></i>
+                <h3 class="questions__item-title">
+                  How does online coaching work?
+                </h3>
+              </header>
+
+              <div class="questions__content">
+                <p class="questions__description">
+                  Online coaching is designed to fit your lifestyle. After
+                  signing up, you'll receive a personalized training and
+                  nutrition plan tailored to your goals. We'll stay in touch
+                  through regular check-ins, video calls, and messaging to track
+                  your progress and make adjustments as needed.
+                </p>
+              </div>
+            </div>
+
+            <div class="questions__item">
+              <header class="questions__header">
+                <i class="ri-add-line questions__icon"></i>
+                <h3 class="questions__item-title">
+                  Can I join if I have a medical condition?
+                </h3>
+              </header>
+
+              <div class="questions__content">
+                <p class="questions__description">
+                  Absolutely! I specialize in working with women who have
+                  conditions like PCOS, thyroid disorders, insulin resistance,
+                  and more. With the support of my medical team, we'll create a
+                  safe and effective plan tailored to your needs.
+                </p>
+              </div>
+            </div>
+
+            <div class="questions__item">
+              <header class="questions__header">
+                <i class="ri-add-line questions__icon"></i>
+                <h3 class="questions__item-title">What if I'm a beginner?</h3>
+              </header>
+
+              <div class="questions__content">
+                <p class="questions__description">
+                  No problem at all! My programs are designed for all fitness
+                  levels. Whether you're just starting out or looking to take
+                  your training to the next level, I'll guide you step by step
+                  to ensure you achieve your goals safely and effectively.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="questions__group">
+            <div class="questions__item">
+              <header class="questions__header">
+                <i class="ri-add-line questions__icon"></i>
+                <h3 class="questions__item-title">
+                  How long until I see results?
+                </h3>
+              </header>
+
+              <div class="questions__content">
+                <p class="questions__description">
+                  Results vary depending on your goals, commitment, and starting
+                  point. However, most clients start noticing positive changes
+                  in their energy levels and overall well-being within the first
+                  few weeks, with more visible results within 2-3 months.
+                </p>
+              </div>
+            </div>
+
+            <div class="questions__item">
+              <header class="questions__header">
+                <i class="ri-add-line questions__icon"></i>
+                <h3 class="questions__item-title">
+                  Do I need special equipment?
+                </h3>
+              </header>
+
+              <div class="questions__content">
+                <p class="questions__description">
+                  Not at all! My programs are designed to be flexible and can be
+                  done with minimal equipment. Whether you're at home or in a
+                  gym, I'll provide modifications to suit your available
+                  resources.
+                </p>
+              </div>
+            </div>
+
+            <div class="questions__item">
+              <header class="questions__header">
+                <i class="ri-add-line questions__icon"></i>
+                <h3 class="questions__item-title">
+                  What makes your coaching different?
+                </h3>
+              </header>
+
+              <div class="questions__content">
+                <p class="questions__description">
+                  My coaching focuses on a holistic approach—combining fitness,
+                  nutrition, and mental well-being. With over 10 certifications
+                  and a dedicated medical team, I provide personalized support
+                  to help you achieve lasting results and build a positive
+                  relationship with your body and food.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--==================== testimonial ====================-->
+      <section
+        class="testimonial section"
+        id="testimonial"
+        data-aos="fade-left"
+      >
+        <h2 class="section__title">Testimonial</h2>
+        <div class="testimonial__container container">
+          <div class="testimonial__swiper swiper">
+            <div class="swiper-wrapper">
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="{% static 'assets/img/tes1.jpg' %}"
+                  alt=""
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Nour</h2>
+                <p class="testimonial__description">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Earum, animi veritatis excepturi reprehenderit ex nobis?
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                </div>
+              </article>
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="{% static 'assets/img/tes2.jpg' %}"
+                  alt=""
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Ahmed Ali</h2>
+                <p class="testimonial__description">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa
+                  repellat quam repellendus cupiditate. Eum, esse?
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                </div>
+              </article>
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="{% static 'assets/img/tes3.jpg' %}"
+                  alt=""
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Moaze Adel</h2>
+                <p class="testimonial__description">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus, blanditiis laboriosam repellendus numquam
+                  quisquam ut!
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                </div>
+              </article>
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="{% static 'assets/img/tes4.jpg' %}"
+                  alt=""
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Mohamed Hassan</h2>
+                <p class="testimonial__description">
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Dolores aliquid voluptas, veniam repudiandae ducimus tempore!
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                  <i class="ri-heart-fill"></i>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="popular section" id="popular" data-aos="fade-right">
+        <h2 data-lang="poph2" class="section__title">Client Success Stories</h2>
+        <div class="popular__container container grid">
+          <article class="popular__card">
+            <div class="popular__image">
+              <video
+                poster="{% static 'assets/img/2.png' %}"
+                class="popular__img"
+                id="myVideo"
+                controls
+              >
+                <source
+                  src="{% static 'assets/img/v1.MP4' %}"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <div class="popular__shadow"></div>
+            </div>
+          </article>
+          <article class="popular__card">
+            <div class="popular__image">
+              <video
+                poster="{% static 'assets/img/2.png' %}"
+                class="popular__img"
+                id="myVideo"
+                controls
+              >
+                <source
+                  src="{% static 'assets/img/v2.MP4' %}"
+                  type="video/mp4"
+                />
+              </video>
+              <div class="popular__shadow"></div>
+            </div>
+          </article>
+          <article class="popular__card">
+            <div class="popular__image">
+              <video
+                poster="{% static 'assets/img/2.png' %}"
+                class="popular__img vv"
+                id="myVideo"
+                controls
+              >
+                <source
+                  src="{% static 'assets/img/v3.mp4' %}"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+              <div class="popular__shadow"></div>
+            </div>
+          </article>
+         
+        </div>
+        
+        <div class="te">
+         
+          <a href="" class="button">
+            <p data-lang="button">See More</p> <i class="ri-instagram-line button__icon"></i>
+        </a>
+          
+        </div>
+        
+      </section>
+    </main>
+
+    <!--==================== FOOTER ====================-->
+    <footer class="footer" id="footer">
+      <div class="footer__container container grid">
+        <div>
+          <h3 class="footer__title">Social</h3>
+          <div class="footer__social">
+             
+              <a href="https://www.tiktok.com/@omarelmahdyy_?_t=ZS-8v847sHiWrA&_r=1" target="_blank" class="footer__social-link">
+                  <i class="ri-tiktok-fill"></i>
+              </a>
+            
+              <a href="https://www.instagram.com/omarelmahdyy_?igsh=MThkNHpia2R0Y2Nzcg%3D%3D&utm_source=qr" target="_blank" class="footer__social-link">
+                  <i class="ri-instagram-line"></i>
+              </a>
+
+              <a href="https://www.instagram.com/omarelmahdyy_transformations?igsh=MWR3czYwc3ZhZWh2cg==" target="_blank" class="footer__social-link">
+                  <i class="ri-instagram-fill"></i>
+              </a>
+
+              <a href="https://www.facebook.com/share/157LKGppDq/?mibextid=wwXIfr" target="_blank" class="footer__social-link">
+                  <i class="ri-facebook-circle-fill"></i>
+              </a>
+
+              <a href="http://wa.me/201123453575" target="_blank" class="footer__social-link">
+                  <i class="ri-whatsapp-fill"></i>
+              </a>
+
+              <a href="https://youtube.com/@omarelmahdyy?si=qz5f3L4A3ambjjrb" target="_blank" class="footer__social-link">
+                  <i class="ri-youtube-fill"></i>
+              </a>
+              
+          </div>
+      </div>
+        <div>
+          <h3 class="footer__title">Payment Method</h3>
+          <div class="footer__pay">
+            <img
+              src="{% static 'assets/img/footer-card-1.png' %}"
+              alt=""
+              class="footer__pay-card"
+            />
+            <img
+              src="{% static 'assets/img/footer-card-2.png' %}"
+              alt=""
+              class="footer__pay-card"
+            />
+            <img
+              src="{% static 'assets/img/footer-card-3.png' %}"
+              alt=""
+              class="footer__pay-card"
+            />
+            <img
+              src="{% static 'assets/img/footer-card-4.png' %}"
+              alt=""
+              class="footer__pay-card"
+            />
+          </div>
+        </div>
+        <div>
+          <h3 class="footer__title">Subscribe For Discounts</h3>
+          <form action="" class="footer__form">
+            <input type="email" placeholder="Email" class="footer__input" />
+            <button class="footer__button button">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <span class="footer__copy">
+        &#169; All Rights Reserved By <a href="#">Mo Alramly</a>
+      </span>
+    </footer>
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+      <i class="ri-arrow-up-double-fill"></i>
+    </a>
+
+    <!--=============== SCRIPTS ===============-->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const openBtn = document.getElementById('openCurrencyMenu');
+          const closeBtn = document.getElementById('closeMenu');
+          const menu = document.getElementById('currencyMenu');
+          const menuItems = document.querySelectorAll('.menu-item');
+          const currentCurrencyEl = document.getElementById('currentCurrency');
+          const currentFlag = document.getElementById('currentFlag');
+          const priceEls = document.querySelectorAll('.menu__preci');
+          
+          const basePrices = {
+              package1: 55, // USD
+              package2: 97,
+              package3: 39
+          };
+          
+          const exchangeRates = {
+              USD: 1,
+              EGP: 30.9,
+              SAR: 3.75,
+              AED: 3.67
+          };
+      
+          const countryCurrencyMapping = {
+              'EGP': 'مصر',
+              'SAR': 'السعودية',
+              'AED': 'الإمارات',
+              'USD': 'أمريكا'
+          };
+      
+          let selectedCurrency = 'USD'; // default
+      
+          // Get user's IP info (using ipinfo.io)
+          const ipInfoUrl = 'https://ipinfo.io/json?token=5f01ba4857444e';
+          fetch(ipInfoUrl)
+              .then(response => response.json())
+              .then(data => {
+                  const userCountry = data.country;
+                  const currency = getCurrencyForCountry(userCountry);
+                  setCurrency(currency);
+              });
+      
+          // Map country to currency
+          function getCurrencyForCountry(country) {
+              if (country === 'EG') return 'EGP';
+              if (country === 'SA') return 'SAR';
+              if (country === 'AE') return 'AED';
+              return 'USD'; // Default to USD
+          }
+      
+          function setCurrency(currency) {
+              selectedCurrency = currency;
+              currentCurrencyEl.textContent = currency;
+              currentFlag.innerHTML = `<img src="{% static 'assets/img/${currency.toLowerCase()}.png' %}" width="20">`;
+      
+              priceEls.forEach((el, index) => {
+                  const packageName = `package${index + 1}`;
+                  const usdPrice = basePrices[packageName];
+                  const converted = (usdPrice * exchangeRates[currency]).toFixed(2);
+                  el.textContent = currency === 'USD' ? `$${usdPrice}` : `${converted} ${currency}`;
+              });
+          }
+      
+          openBtn.addEventListener('click', () => {
+              menu.classList.add('show');
+          });
+      
+          closeBtn.addEventListener('click', () => {
+              menu.classList.remove('show');
+          });
+      
+          menuItems.forEach(item => {
+              item.addEventListener('click', () => {
+                  const currency = item.getAttribute('data-currency');
+                  setCurrency(currency);
+                  menu.classList.remove('show');
+              });
+          });
+      
+          // Initial prices update
+          priceEls.forEach((el, index) => {
+              const packageName = `package${index + 1}`;
+              const usdPrice = basePrices[packageName];
+              el.textContent = `$${usdPrice}`;
+          });
+      });
+  </script>
+    <!--=============== SWIPER JS ===============-->
+    <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        offset: 200,
+        duration: 1500,
+      });
+    </script>
+  </body>
+</html>

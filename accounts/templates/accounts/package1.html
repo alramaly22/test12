@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="{% static 'assets/img/logo-2.svg' %}" type="image/x-icon">
+
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+    <title>Omar</title>
+</head>
+
+<body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="{% url 'index' %}" class="nav__logo"><img style="width: 60%;" src="{% static 'assets/img/logo-2.svg' %}" alt="" class="logohat"></a>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li>
+                        <a href="#home" class="nav__link">HOME</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'about' %}" class="nav__link">ABOUT</a>
+                    </li>
+
+                    <li>
+                        <a href="#trans" class="nav__link">TRANSFORMATION</a>
+                    </li>
+
+                    <li>
+                        <a href="#testimonial" class="nav__link">
+                            TESTIMONIAL
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'calc' %}" class="nav__link">CALCULATOR</a>
+                    </li>
+                </ul>
+                <div class="nav__colse" id="nav-close">
+                    <i class="ri-close-large-line"></i>
+                </div>
+            </div>
+            <button type="button" id="openCurrencyMenu" class="btn--rounded-gray">
+                <span class="flag-icon" id="currentFlag">
+                    <img src="{% static 'assets/img/usd.webp' %}" width="20" />
+                </span>
+                <span class="mx-1.5">|</span>
+                <span id="currentCurrency">USD</span>
+            </button>
+            
+            <div class="language-currency-menu popup" id="currencyMenu">
+                <div class="menu-header">
+                    <span style="color: #ff9500;">اختر اللغة والعملة</span>
+                    <span class="close-btn" id="closeMenu">&times;</span>
+                </div>
+            
+                <div class="menu-options">
+                    <div class="menu-item" data-lang="ar" data-currency="EGP" data-flag="eg.png">
+                        <img src="{% static 'assets/img/eg.png' %}" alt="العلم المصري" class="flag-icon">
+                        <span>العربية - الجنيه المصري (EGP)</span>
+                    </div>
+                    <div class="menu-item" data-lang="ar" data-currency="SAR" data-flag="saudi.webp">
+                        <img src="{% static 'assets/img/saudi.webp' %}" alt="العلم السعودي" class="flag-icon">
+                        <span>العربية - الريال السعودي (SAR)</span>
+                    </div>
+                    <div class="menu-item" data-lang="ar" data-currency="AED" data-flag="unitearab.webp">
+                        <img src="{% static 'assets/img/unitearab.webp' %}" alt="العلم الإماراتي" class="flag-icon">
+                        <span>العربية - الدرهم الإماراتي (AED)</span>
+                    </div>
+                    <div class="menu-item" data-lang="en" data-currency="USD" data-flag="usd.webp">
+                        <img src="{% static 'assets/img/usd.webp' %}" alt="العلم الأمريكي" class="flag-icon">
+                        <span>English - US Dollar (USD)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="ri-apps-2-fill"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+        <!--==================== HOME ====================-->
+        <section class="home3 section" id="home">
+            <div class="home3__container container grid">
+                <h1 class="home__name">Test1</h1>
+                <div class="home__perfil3">
+                    <div class="home__image3">
+                        <img src="{% static 'assets/img/s.webp' %}" alt="" class="home__img3">
+                        <div class="home__shadow3"></div>
+                        <div class="geometric-box"></div>
+                    </div>
+                    <div class="home__social3">
+                        <a href="" class="home__social-link"></a>
+                        <a href="" class="home__social-link"></a>
+                        <a href="" class="home__social-link"></a>
+                    </div>
+                </div>
+                <div class="home__info3">
+                    <p class="home__description3">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae est odit ex inventore, esse iusto vero omnis fugit reiciendis dolorem consequuntur excepturi. Atque voluptas dolores excepturi fuga labore illo delectus.
+                    </p>
+                    <div class="days-buttons">
+                        <label class="days-label">Select Number of Days</label>
+                        <div class="btn-group">
+                            <button class="btn-day active" data-price="3000" data-link="https://app.fawaterk.com/paymentRequest/show/18651">3 Days</button>
+                            <button class="btn-day" data-price="4000" data-link="https://app.fawaterk.com/paymentRequest/show/18650">4 Days</button>
+                            <button class="btn-day" data-price="5000" data-link="https://app.fawaterk.com/paymentRequest/show/18647">5 Days</button>
+                        </div>
+                    </div>
+
+
+                    <div class="product-box">
+                        <div class="price-container">
+                            <span class="price-label">Price: </span>
+                            <span class="price-value" id="price-value">3,000 USD</span>
+                        </div>
+                        <div class="buttonsgroup">
+                            <a id="checkout-link" href="https://app.fawaterk.com/paymentRequest/show/18651" class="btn btn-cart">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!--==================== testimonial ====================-->
+        <section class="testimonial section" id="testimonial" data-aos="fade-right">
+            <h2 class="section__title">
+                Testimonial
+            </h2>
+            <div class="testimonial__container container">
+                <div class="testimonial__swiper swiper">
+                    <div class="swiper-wrapper">
+                        <article class="testimonial__card swiper-slide">
+                            <img src="{% static 'assets/img/tes1.jpg' %}" alt="" class="testimonial__img">
+                            <h2 class="testimonial__title">
+                                Nour
+                            </h2>
+                            <p class="testimonial__description">
+                                Hey Omar, how are you? Honestly, everything is going great. The meal plan and workout routine are amazing. I can't believe I lost 10 kg of fat without feeling deprived of anything! My diet and physique have completely changed, and the difference is clearly
+                                visible in the pictures. It was truly an honor working with you during this period. You have great taste, you're very respectful, and you never hesitate to provide any information. Mashallah, you understand everything and
+                                are really skilled. My mindset about food and dieting has completely changed. Now, I eat well and properly while understanding exactly what goes into my body. I calculate everything, and I no longer stress about whether
+                                eating something will make me gain weight or ruin my diet. Before, I used to regain the weight I lost because I didn't understand things properly. Now, exercise has become an essential part of my daily routine, and I can't
+                                imagine my life without it. Honestly, everything about you is amazing. May God bless you! Thank you for everything and for all the effort you put in with me. I truly appreciate it </p>
+                            <div class="testimonial__stars">
+                                <i class="ri-heart-fill"></i>
+                                <i class="ri-heart-fill"></i>
+                                <i class="ri-heart-fill"></i>
+                                <i class="ri-heart-fill"></i>
+                                <i class="ri-heart-fill"></i>
+                            </div>
+                        </article>
+                        <article class="testimonial__card swiper-slide">
+                            <img src="{% static 'assets/img/tes2.jpg' %}" alt="" class="testimonial__img">
+                            <h2 class="testimonial__title">
+                                Noran Marwan
+                            </h2>
+                            <p class="testimonial__description">
+                                Coach, if you only knew how much you've changed things I once thought were impossible! Whenever I heard people talk about a healthy lifestyle, I used to imagine it as something extremely difficult that required immense strength and determination—something
+                                I never thought I had. But you truly made it simple for me. Even on days when I struggled to stay committed, you always made it feel manageable and not like a big deal. Thank you so much! 🌹 At first, I just wanted to see
+                                how far I could go in reducing my body fat percentage. But honestly, I had completely lost hope in losing weight due to all the health issues I was dealing with. When I once visited a gynecologist, she advised me to see
+                                a surgeon and undergo a gastric sleeve surgery. And when I went to the surgeon, he actually turned me away! 🤣🤣 I even considered other procedures like the balloon or smart capsule, thinking they were my only options.
+                                But now, I'm so grateful! I've already lost 15 kg, and my goal is to reach 25 kg. Thanks to God, I'm in great health, feeling amazing, and still progressing. May God bless you for all your efforts—you never fail to support
+                                me! ❤️❤️❤️🌹🌹🌹
+                                <div class="testimonial__stars">
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                </div>
+                        </article>
+                        <article class="testimonial__card swiper-slide">
+                            <img src="{% static 'assets/img/tes3.jpg' %}" alt="" class="testimonial__img">
+                            <h2 class="testimonial__title">
+                                Mariam Ahmed
+                            </h2>
+                            <p class="testimonial__description">
+                                Coach, I swear, in just a few weeks, my body has completely transformed—180 degrees! I can't even describe how happy I am with the results! My stomach and waist look completely different—it's unbelievable! My body has changed so much that I've reached
+                                a level I never thought possible. Today at the gym, everyone was commenting on my progress, asking me how I managed to achieve this transformation. When someone truly gets inside your head, motivates you, and guides you
+                                properly, you realize the process is actually much easier and faster than you ever imagined—especially when that person is as incredible as you. Thank you so much, truly! Every single word or piece of advice you gave me,
+                                I took to heart and applied exactly as you said. And honestly, that's what made all the difference for me—it was all about mindset and following what you taught me!
+                                <div class="testimonial__stars">
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                </div>
+                        </article>
+                        <article class="testimonial__card swiper-slide">
+                            <img src="{% static 'assets/img/tes5.jpg' %}" alt="" class="testimonial__img">
+                            <h2 class="testimonial__title">
+                                Talia Youssef
+                            </h2>
+                            <p class="testimonial__description">
+                                The transformation has been incredible! My body shape has changed so much, even though I wasn't fully committed to training and diet. If I had been more disciplined, the results would have been even better! My skin has also improved significantly—something
+                                I didn't expect at all! At first, the workout schedule overwhelmed me 😂, but later, I actually started enjoying it. The training is well-structured and makes a huge difference. As for food, I was amazed that I could still
+                                eat what I love without a complicated diet plan. Understanding that I can enjoy my meals made the whole journey much easier and more comfortable for me. Honestly, everything has been great! The only issue was the time difference,
+                                which sometimes delayed responses, but that's totally fine. Most importantly, you're professional, respectful, and genuinely dedicated to helping people. You never hold back any valuable information, and that's exactly
+                                why I decided to sign up with you. ❤️🙏🏻🙏🏻
+                                <div class="testimonial__stars">
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                </div>
+                        </article>
+
+                        <article class="testimonial__card swiper-slide">
+                            <img src="{% static 'assets/img/tes8.jpg' %}" alt="" class="testimonial__img">
+                            <h2 class="testimonial__title">
+                                Jana Sami
+                            </h2>
+                            <p class="testimonial__description">
+                                Honestly, this isn't just feedback for the sake of giving feedback—I truly mean every word. You are an outstanding and successful person, and I genuinely wish you more success. I have changed so much, and I now feel a level of confidence I never had before—all
+                                because of you and what I've learned from you. I never knew how to eat properly, but now I've learned how to eat well without depriving myself. I can't even explain exactly what you did, but I'm extremely happy with the
+                                results and continuing my journey because of you. Your professionalism is incredible—any time I asked you something, you always had the right answer. Despite my busy schedule and all the challenges, I still achieved amazing
+                                results, and I'm truly happy about it. I was so eager to share my progress photos, and I wish you all the success because you truly deserve it. ❤️
+                                <div class="testimonial__stars">
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                    <i class="ri-heart-fill"></i>
+                                </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!--==================== FOOTER ====================-->
+    <footer class="footer">
+        <div class="footer__container container grid">
+            <div>
+                <h3 class="footer__title">Social</h3>
+                <div class="footer__social">
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="ri-facebook-circle-line"></i>
+                    </a>
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="#" target="_blank" class="footer__social-link">
+                        <i class="ri-tiktok-line"></i>
+                    </a>
+
+                </div>
+            </div>
+            <div>
+                <h3 class="footer__title">Payment Metho</h3>
+                <div class="footer__pay">
+                    <img src="{% static 'assets/img/footer-card-1.png' %}" alt="" class="footer__pay-card">
+                    <img src="{% static 'assets/img/footer-card-2.png' %}" alt="" class="footer__pay-card">
+                    <img src="{% static 'assets/img/footer-card-3.png' %}" alt="" class="footer__pay-card">
+                    <img src="{% static 'assets/img/footer-card-4.png' %}" alt="" class="footer__pay-card">
+                </div>
+            </div>
+            <div>
+                <h3 class="footer__title">Subscribe For Discounts</h3>
+                <form action="" class="footer__form">
+                    <input type="email" placeholder="Email" class="footer__input">
+                    <button class="footer__button button">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+        <span class="footer__copy">
+            &#169; All Rights Reserved By <a href="#">Mo Alramly</a>
+        </span>
+    </footer>
+
+    <!--========== SCROLL UP ==========-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-double-fill"></i>
+    </a>
+    <!--=============== SWIPER JS ===============-->
+    <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openBtn = document.getElementById('openCurrencyMenu');
+            const closeBtn = document.getElementById('closeMenu');
+            const menu = document.getElementById('currencyMenu');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const currentCurrencyEl = document.getElementById('currentCurrency');
+            const currentFlag = document.getElementById('currentFlag');
+            const priceEls = document.querySelectorAll('.menu__preci');
+        
+            const basePrices = {
+                package1: 55, // USD
+                package2: 97,
+                package3: 39
+            };
+        
+            const exchangeRates = {
+                USD: 1,
+                EGP: 30.9,
+                SAR: 3.75,
+                AED: 3.67
+            };
+        
+            const paymentLinks = {
+                EGP: {
+                    package1: "https://app.fawaterk.com/paymentRequest/show/18645",
+                    package2: "https://app.fawaterk.com/paymentRequest/show/18646",
+                    package3: "https://app.fawaterk.com/paymentRequest/show/18647"
+                },
+                SAR: {
+                    package1: "https://app.fawaterk.com/paymentRequest/show/18651",
+                    package2: "https://app.fawaterk.com/paymentRequest/show/18652",
+                    package3: "https://app.fawaterk.com/paymentRequest/show/18653"
+                },
+                AED: {
+                    package1: "https://staging.fawaterk.com/paymentRequest/show/308",
+                    package2: "https://staging.fawaterk.com/paymentRequest/show/307",
+                    package3: "https://staging.fawaterk.com/paymentRequest/show/306"
+                },
+                USD: {
+                    package1: "https://app.fawaterk.com/paymentRequest/show/18648",
+                    package2: "https://app.fawaterk.com/paymentRequest/show/18649",
+                    package3: "https://app.fawaterk.com/paymentRequest/show/18650"
+                }
+            };
+        
+            let selectedCurrency = 'USD'; // default
+        
+            // Function to set currency based on location
+            function setCurrencyBasedOnLocation() {
+                // Use ipinfo.io API to get country based on IP
+                fetch('https://ipinfo.io/197.54.59.165/json?token=5f01ba4857444e')
+                    .then(response => response.json())
+                    .then(data => {
+                        const country = data.country;
+                        if (country === 'EG') {
+                            selectedCurrency = 'EGP';
+                            updateCurrencyUI('EGP');
+                        } else if (country === 'SA') {
+                            selectedCurrency = 'SAR';
+                            updateCurrencyUI('SAR');
+                        } else if (country === 'AE') {
+                            selectedCurrency = 'AED';
+                            updateCurrencyUI('AED');
+                        } else {
+                            selectedCurrency = 'USD';
+                            updateCurrencyUI('USD');
+                        }
+                    });
+            }
+        
+            function updateCurrencyUI(currency) {
+                const flagMap = {
+                    EGP: 'eg.png',
+                    SAR: 'saudi.webp',
+                    AED: 'unitearab.webp',
+                    USD: 'usd.webp'
+                };
+        
+                // Update current currency and flag
+                currentCurrencyEl.textContent = currency;
+                currentFlag.innerHTML = `<img src="/static/assets/img/${flagMap[currency]}" width="20">`;
+        
+                // Update prices based on selected currency
+                priceEls.forEach((el, index) => {
+                    const packageName = `package${index + 1}`;
+                    const usdPrice = basePrices[packageName];
+                    const converted = (usdPrice * exchangeRates[currency]).toFixed(2);
+                    el.textContent = currency === 'USD' ? `$${usdPrice}` : `${converted} ${currency}`;
+                });
+        
+                // Update payment links based on selected currency
+                const buttons = document.querySelectorAll('.btn-day');
+                buttons.forEach((button, index) => {
+                    const packageName = `package${index + 1}`;
+                    button.setAttribute('data-link', paymentLinks[currency][packageName]);
+                });
+        
+                // Auto-click the first button to set the correct price and link
+                buttons[0].click();
+            }
+        
+            openBtn.addEventListener('click', () => {
+                menu.classList.add('show');
+            });
+        
+            closeBtn.addEventListener('click', () => {
+                menu.classList.remove('show');
+            });
+        
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const currency = item.getAttribute('data-currency');
+                    const flag = item.getAttribute('data-flag');
+        
+                    selectedCurrency = currency;
+        
+                    // Update currency and flag
+                    currentCurrencyEl.textContent = currency;
+                    currentFlag.innerHTML = `<img src="/static/assets/img/${flag}" width="20">`;
+        
+                    // Update prices only
+                    priceEls.forEach((el, index) => {
+                        const packageName = `package${index + 1}`;
+                        const usdPrice = basePrices[packageName];
+                        const converted = (usdPrice * exchangeRates[currency]).toFixed(2);
+                        el.textContent = currency === 'USD' ? `$${usdPrice}` : `${converted} ${currency}`;
+                    });
+        
+                    // Update links for each button based on the selected currency
+                    const buttons = document.querySelectorAll('.btn-day');
+                    buttons.forEach((button, index) => {
+                        const packageName = `package${index + 1}`;
+                        button.setAttribute('data-link', paymentLinks[currency][packageName]);
+                    });
+        
+                    // Update price and link automatically when selecting a currency
+                    const firstButton = buttons[0]; // First button (e.g., 3 Days)
+                    firstButton.click(); // Simulate button click to update price and link
+                    menu.classList.remove('show');
+                });
+            });
+        
+            // Initialize by setting the default currency based on location
+            setCurrencyBasedOnLocation();
+        
+            // Initial load: update prices in USD
+            priceEls.forEach((el, index) => {
+                const packageName = `package${index + 1}`;
+                const usdPrice = basePrices[packageName];
+                el.textContent = `$${usdPrice}`;
+            });
+        
+            // Add active button effect
+            const buttons = document.querySelectorAll('.btn-day');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active from all buttons
+                    buttons.forEach(btn => btn.classList.remove('active'));
+        
+                    // Add active to clicked button
+                    button.classList.add('active');
+        
+                    // Update price and link
+                    const price = button.getAttribute("data-price");
+                    const link = button.getAttribute("data-link");
+                    const priceValue = document.getElementById("price-value");
+        
+                    priceValue.textContent = `${Number(price).toLocaleString()} ${selectedCurrency}`;
+                    document.getElementById("checkout-link").href = link;
+                });
+            });
+        });
+        
+    </script>
+    <!--=============== MAIN JS ===============-->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <!-- scrolll animation -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 200,
+            duration: 1500
+        });
+    </script>
+    <script src="https://app.embed.im/spark.js" defer></script>
+</body>
+
+</html>

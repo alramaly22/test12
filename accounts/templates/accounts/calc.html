@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <!-- By Ali Aslan -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/test.css' %}" />
+    <title>BMI Calculator</title>
+  </head>
+
+  <body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+      <nav class="nav containereo">
+        <a href="#" class="nav__logo">
+          <img
+            style="width: 45%"
+            src="{% static 'assets/img/logo-2.svg' %}"
+            alt=""
+            class="logohat"
+          />
+        </a>
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li>
+              <a href="{% url 'index' %}" class="nav__link">HOME</a>
+            </li>
+
+            <li>
+              <a href="{% url 'about' %}" class="nav__link">ABOUT US</a>
+            </li>
+
+            <li>
+              <a href="{% url 'index' %}#trans" class="nav__link"
+                >TRANSFORMATION</a
+              >
+            </li>
+
+            <li>
+              <a href="{% url 'index' %}#testimonial" class="nav__link">
+                TESTIMONIAL
+              </a>
+            </li>
+
+            <li>
+              <a href="#calc" class="nav__link">CALCULATOR</a>
+            </li>
+          </ul>
+          <div class="nav__colse" id="nav-close">
+            <i class="ri-close-large-line"></i>
+          </div>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-apps-2-fill"></i>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container" style="padding-top: 6rem">
+      <div class="box">
+        <h1>BMI Calculator</h1>
+        <div class="content">
+          <div class="input">
+            <label for="height">Age</label>
+            <input
+              type="number"
+              class="text-input"
+              id="age"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div class="gender">
+            <label class="container">
+              <input type="radio" name="radio" id="m" />
+              <p class="text">Male</p>
+              <span class="checkmark"></span>
+            </label>
+
+            <label class="container">
+              <input type="radio" name="radio" id="f" />
+              <p class="text">Female</p>
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div class="containerHW">
+            <div class="inputH">
+              <label for="height">Height(cm)</label>
+              <input type="number" id="height" required />
+            </div>
+
+            <div class="inputW">
+              <label for="weight">Weight(kg)</label>
+              <input type="number" id="weight" required />
+            </div>
+          </div>
+
+          <button class="calculate" id="submit">Calculate BMI</button>
+        </div>
+        <div class="result">
+          <p>Your BMI is</p>
+          <div id="result">00.00</div>
+          <p class="comment"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalText"></p>
+      </div>
+    </div>
+
+    <script src="{% static 'assets/js/test.js' %}"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // حساب BMI
+        document
+          .getElementById("submit")
+          .addEventListener("click", function () {
+            const age = document.getElementById("age").value;
+            const height = document.getElementById("height").value;
+            const weight = document.getElementById("weight").value;
+            const male = document.getElementById("m").checked;
+            const female = document.getElementById("f").checked;
+
+            if (!age || !height || !weight || (!male && !female)) {
+              document.getElementById("modalText").textContent =
+                "Please fill all fields!";
+              document.getElementById("myModal").style.display = "block";
+              return;
+            }
+
+            const bmi = (weight / ((height / 100) * (height / 100))).toFixed(2);
+            document.getElementById("result").textContent = bmi;
+
+            let comment = "";
+            if (bmi < 18.5) {
+              comment = "Underweight";
+            } else if (bmi >= 18.5 && bmi < 25) {
+              comment = "Normal weight";
+            } else if (bmi >= 25 && bmi < 30) {
+              comment = "Overweight";
+            } else {
+              comment = "Obese";
+            }
+
+            document.querySelector(".comment").textContent = comment;
+          });
+
+        // إغلاق المودال
+        document.querySelector(".close").addEventListener("click", function () {
+          document.getElementById("myModal").style.display = "none";
+        });
+
+        // إغلاق المودال عند النقر خارجها
+        window.addEventListener("click", function (event) {
+          if (event.target == document.getElementById("myModal")) {
+            document.getElementById("myModal").style.display = "none";
+          }
+        });
+
+        // قائمة الهاتف المتحرك
+        const navToggle = document.getElementById("nav-toggle");
+        const navClose = document.getElementById("nav-close");
+        const navMenu = document.getElementById("nav-menu");
+
+        if (navToggle) {
+          navToggle.addEventListener("click", () => {
+            navMenu.classList.add("show-menu");
+          });
+        }
+
+        if (navClose) {
+          navClose.addEventListener("click", () => {
+            navMenu.classList.remove("show-menu");
+          });
+        }
+
+        // إغلاق القائمة عند النقر على رابط
+        const navLink = document.querySelectorAll(".nav__link");
+        navLink.forEach((n) =>
+          n.addEventListener("click", () => {
+            navMenu.classList.remove("show-menu");
+          })
+        );
+      });
+    </script>
+  </body>
+</html>
