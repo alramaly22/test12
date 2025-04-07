@@ -655,13 +655,13 @@
             const currentCurrencyEl = document.getElementById('currentCurrency');
             const currentFlag = document.getElementById('currentFlag');
             const priceEls = document.querySelectorAll('.menu__preci');
-            
+        
             const basePrices = {
-                package1: 55, // USD
+                package1: 55,
                 package2: 97,
                 package3: 39
             };
-            
+        
             const exchangeRates = {
                 USD: 1,
                 EGP: 30.9,
@@ -669,37 +669,23 @@
                 AED: 3.67
             };
         
-            const countryCurrencyMapping = {
-                'EGP': 'مصر',
-                'SAR': 'السعودية',
-                'AED': 'الإمارات',
-                'USD': 'أمريكا'
+            const flagMap = {
+                EGP: 'eg.png',
+                SAR: 'saudi.webp',
+                AED: 'unitearab.webp',
+                USD: 'usd.webp'
             };
         
-            let selectedCurrency = 'USD'; // default
-        
-            // Get user's IP info (using ipinfo.io)
-            const ipInfoUrl = 'https://ipinfo.io/json?token=5f01ba4857444e';
-            fetch(ipInfoUrl)
-                .then(response => response.json())
-                .then(data => {
-                    const userCountry = data.country;
-                    const currency = getCurrencyForCountry(userCountry);
-                    setCurrency(currency);
-                });
-        
-            // Map country to currency
-            function getCurrencyForCountry(country) {
-                if (country === 'EG') return 'EGP';
-                if (country === 'SA') return 'SAR';
-                if (country === 'AE') return 'AED';
-                return 'USD'; // Default to USD
+            function getCurrencyForCountry(countryCode) {
+                if (countryCode === 'EG') return 'EGP';
+                if (countryCode === 'SA') return 'SAR';
+                if (countryCode === 'AE') return 'AED';
+                return 'USD';
             }
         
             function setCurrency(currency) {
-                selectedCurrency = currency;
                 currentCurrencyEl.textContent = currency;
-                currentFlag.innerHTML = `<img src="{% static 'assets/img/${currency.toLowerCase()}.png' %}" width="20">`;
+                currentFlag.innerHTML = `<img src="/static/assets/img/${flagMap[currency]}" width="20">`;
         
                 priceEls.forEach((el, index) => {
                     const packageName = `package${index + 1}`;
@@ -708,6 +694,17 @@
                     el.textContent = currency === 'USD' ? `$${usdPrice}` : `${converted} ${currency}`;
                 });
             }
+        
+            fetch('/location/')
+                .then(res => res.json())
+                .then(data => {
+                    const userCountry = data.country || 'US';
+                    const currency = getCurrencyForCountry(userCountry);
+                    setCurrency(currency);
+                })
+                .catch(() => {
+                    setCurrency('USD');
+                });
         
             openBtn.addEventListener('click', () => {
                 menu.classList.add('show');
@@ -725,15 +722,16 @@
                 });
             });
         
-            // Initial prices update
-            priceEls.forEach((el, index) => {
-                const packageName = `package${index + 1}`;
-                const usdPrice = basePrices[packageName];
-                el.textContent = `$${usdPrice}`;
+            // عرض الأسعار بالدولار مبدئياً
+            Object.keys(basePrices).forEach((key, index) => {
+                const price = basePrices[key];
+                if (priceEls[index]) {
+                    priceEls[index].textContent = `$${price}`;
+                }
             });
         });
-    </script>
-      <!--=============== MAIN JS ===============-->
+        </script>
+          <!--=============== MAIN JS ===============-->
     <script src="{% static 'assets/js/main.js' %}"></script>
     <!-- يمكنك استخدام CDN أو النسخة المحلية -->
     <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>

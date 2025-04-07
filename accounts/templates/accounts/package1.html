@@ -348,7 +348,7 @@
             // Function to set currency based on location
             function setCurrencyBasedOnLocation() {
                 // Use ipinfo.io API to get country based on IP
-                fetch('https://ipinfo.io/197.54.59.165/json?token=5f01ba4857444e')
+                fetch('/location/')
                     .then(response => response.json())
                     .then(data => {
                         const country = data.country;

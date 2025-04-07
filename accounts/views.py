@@ -18,49 +18,40 @@ def test2(request):
 def package1(request):
     return render(request, 'accounts/package1.html')
 
-
 def paid_webhook(request):
-    """ Webhook لاستقبال بيانات الدفع من فواتيرك """
     if request.method == "POST":
         try:
             data = json.loads(request.body)
             print("✅ Payment Data Received:", data)
 
-            # الحصول على حالة الدفع من بيانات الاستجابة
-            payment_status = data.get("status")  # تأكد من أن المفتاح صحيح حسب استجابة فواتيرك
-            
+            payment_status = data.get("status")
             if payment_status == "paid":
-                return JsonResponse({"redirect_url": "/form/"})  # إعادة التوجيه إلى الفورم عبر JSON
-            
+                return JsonResponse({"redirect_url": "/form/"})
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON"}, status=400)
 
     return JsonResponse({"status": "received"}, status=200)
 
-def get_location_info(ip_address):
-    # رابط الـ API مع التوكن الخاص بك
+# دالة للحصول على IP المستخدم الحقيقي
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+# دالة تجيب بيانات الموقع الجغرافي
+def location_view(request):
+    ip_address = get_client_ip(request)
     url = f"https://ipinfo.io/{ip_address}/json?token=5f01ba4857444e"
     
-    # إرسال طلب GET للحصول على البيانات من الـ API
-    response = requests.get(url)
-    
-    if response.status_code == 200:
-        # إذا كانت الاستجابة ناجحة (رمز 200)، نقوم بتحويل الاستجابة إلى JSON
-        return response.json()
-    else:
-        # إذا حدث خطأ، نرجع None
-        return None
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            return JsonResponse(data)
+    except:
+        pass
 
-# View لعرض بيانات الموقع بناءً على عنوان IP
-def location_view(request):
-    ip_address = '197.54.59.165'  # يمكنك تغيير الـ IP أو استخدام الـ IP الخاص بالـ user إذا أردت
-    
-    # استدعاء الدالة لجلب البيانات
-    location_data = get_location_info(ip_address)
-    
-    if location_data:
-        # إذا تم الحصول على البيانات، قم بإرجاعها كـ JSON
-        return JsonResponse(location_data)
-    else:
-        # إذا لم نستطع جلب البيانات، نعرض رسالة خطأ
-        return JsonResponse({"error": "لم نتمكن من الحصول على المعلومات"})
+    return JsonResponse({"error": "لم نتمكن من الحصول على المعلومات"}, status=400)
