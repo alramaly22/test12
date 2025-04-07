@@ -5,4 +5,4 @@ tzdata==2024.1
 whitenoise==6.7.0
 stripe==10.8.0
 requests==2.31.0
-ipinfo==3.1.0
+ipinfo==5.1.1
